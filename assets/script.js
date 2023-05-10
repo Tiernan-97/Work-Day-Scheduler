@@ -1,6 +1,6 @@
 var options = {
   startHour: 9,
-  endHour: 24
+  endHour: 17
 };
 
 function updateTimeSlots() {
@@ -13,10 +13,13 @@ function updateTimeSlots() {
 
     if (hour < currentHour) {
       $(element).find('.description').addClass('past');
-    } else if (hour === currentHour) {
+      
+    } else if (hour == currentHour) {
       $(element).find('.description').addClass('present');
+      
     } else {
       $(element).find('.description').addClass('future');
+      
     }
   });
 };
@@ -33,7 +36,7 @@ function onSave(e) {
 function generateTimeSlots() {
    for (hour = options.startHour; hour<= options.endHour; hour++) {
     var savedTask = localStorage.getItem(hour) || '';
-    var html = `<div class="row" data-hour="${hour}">
+    var html = `<div class="row time-block" data-hour="${hour}">
                 <div class="col-sm-2 hour">${hour}</div>
                 <div class="col-sm-8 row past">
                   <textarea class="col-md-10 description">${savedTask}</textarea>
